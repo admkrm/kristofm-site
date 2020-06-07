@@ -1,0 +1,31 @@
+---
+permalink: '/home/feed.xml'
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ metadata.title }} | Writing + Gallery + Notes + Links feed</title>
+  <subtitle>{{ metadata.subtitle }}</subtitle>
+  <link href="{{ metadata.url }}{{ permalink }}" rel="self"/>
+  <link href="{{ metadata.url }}/"/>
+  <updated>{{ collections.home | rssLastUpdatedDate }}</updated>
+  <id>{{ metadata.url }}</id>
+  <author>
+    <name>{{ metadata.authorName }}</name>
+    <email>{{ metadata.authorEmail }}</email>
+  </author>
+  {% set itemList = collections.home | head(-10) | reverse %}
+  {% for item in itemList %}
+    {% set absoluteItemUrl %}{{ metadata.url }}{{ item.url | url }}{% endset %}
+    <entry>
+      <title>{{ item.data.title }}</title>
+      <link href="{{ absoluteItemUrl }}"/>
+      <updated>{{ item.date | rssDate }}</updated>
+      <id>{{ absoluteItemUrl }}</id>
+      <content type="html">
+        <![CDATA[
+      {{ item.templateContent | safe }}
+    ]]>
+      </content>
+    </entry>
+  {% endfor %}
+</feed>

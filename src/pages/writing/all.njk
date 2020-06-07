@@ -1,0 +1,15 @@
+---
+layout: 'all'
+class: 'writing'
+permalink: '/{{class}}/all/'
+title: 'All writing'
+---
+<h1>All the writing I have written</h1>
+
+<ul>
+{%- for item in collections.writing | reverse -%}
+  <li><a href="{{ item.url | url }}">{{ item.data.title }}</a> ({{item.data.date.getDate()}}/{{item.data.date.getMonth()+1}}/{{ item.data.date.getFullYear() }})</li>
+{%- endfor -%}
+</ul>
+
+<p>View the <a href="{{ '/writing/' | url }}">most recent</a> writing or check out <a href="{{ '/writing/search/' | url }}">the archive</a>.</p>

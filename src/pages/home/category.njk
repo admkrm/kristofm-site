@@ -1,0 +1,18 @@
+---
+layout: 'search'
+class : 'home'
+pagination:
+  data: collections.homeCategories
+  size: 1
+  alias: category
+permalink: /{{class}}/search/categories/{{ category }}/
+title: Posts in category {{ category }}
+---
+<h1>Posts for category "{{ category }}"</h1>
+<ul>
+  {% set postList = collections.homeCategoryCollections[category] %}
+  {%- for item in postList -%}
+      <li><a href="{{ item.url | url }}">{{ item.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+<p>Back to <a href="{{ '/home/search/' | url }}">search</a>, to the <a href="{{ '/' | url }}">most recent</a> or <a href="{{ '/home/all' | url }}">full list</a> of posts</p>

@@ -1,0 +1,16 @@
+---
+layout: 'all'
+class: 'links'
+permalink: '/{{class}}/all/'
+title: 'All links'
+---
+
+<h1>All the links I have added</h1>
+
+<ul>
+{%- for item in collections.links | reverse -%}
+  <li><a href="{{ item.url | url }}">{{ item.data.title }}</a> ({{item.data.date.getDate()}}/{{item.data.date.getMonth()+1}}/{{ item.data.date.getFullYear() }})</li>
+{%- endfor -%}
+</ul>
+
+<p>View the <a href="{{ '/links/' | url }}">most recent</a> links or check out <a href="{{ '/links/search/' | url }}">the archive</a>.</p>

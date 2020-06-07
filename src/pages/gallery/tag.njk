@@ -1,0 +1,21 @@
+---
+layout: 'search'
+class : 'gallery'
+pagination:
+  data: collections.galleryTags
+  size: 1
+  alias: tag
+permalink: /{{ class }}/search/tags/{{ tag }}/
+title: Gallery tagged with {{ tag }}
+---
+
+<h1>Gallery for tag "{{ tag }}"</h1>
+
+<ul>
+  {% set galleryList = collections.galleryTagCollections[tag] %}
+  {%- for item in galleryList -%}
+      <li><a href="{{ item.url | url }}">{{ item.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>Back to <a href="{{ '/gallery/search/' | url }}">search</a>, to the <a href="{{ '/gallery/' | url }}">most recent</a> or <a href="{{ '/gallery/all' | url }}">full list</a> of gallery items</p>

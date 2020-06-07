@@ -1,0 +1,29 @@
+---
+layout: 'posts'
+class: 'notes'
+permalink: '/{{class}}/'
+title: 'Search notes'
+titleList: 'List of the recents'
+eleventyNavigation:
+  key: 'Notes'
+  title: 'Notes'
+  order: 3
+---
+
+{%- for item in collections.notes | head(-10) | reverse -%}
+  <article id="{{ item.fileSlug }}">
+    <h2><a href="{{ item.url | url }}">{{ item.data.title }}</a></h2>
+    <p>By <a href="/about">{{ metadata.authorName}}</a> on <time datetime="{{ item.date | dateFilter }}">{{ item.date | dateFilter }}</time></p>
+    {% if item.data.sumImage %}
+      <img src="{{ item.data.sumImage }}" alt="{{ item.data.sumImageAlt }}">
+    {% endif %}
+    {% if item.data.sumDescription %}
+      {{ item.data.sumDescription | safe }}
+      <p>Posted in <a href="/{{class}}/search/categories/{{item.data.category}}">{{item.data.category}}</a>.</p>
+      <p><a href='{{ item.url | url }}'>Read more</a></p>
+    {% else %}
+        {{ item.templateContent | safe }}
+        <p>Posted in <a href="/{{class}}/search/categories/{{item.data.category}}">{{item.data.category}}</a>.</p>
+    {% endif %}
+  </article>
+{%- endfor -%}

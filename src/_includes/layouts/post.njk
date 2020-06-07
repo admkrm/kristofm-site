@@ -1,0 +1,36 @@
+---
+layout: 'base'
+inlineStyle: ''
+inlineScript: ''
+---
+
+<aside>
+	{% include "partials/aside_post.njk" %}
+</aside>
+<main class="posts">
+	{% include "partials/showstrip.njk" %}
+	<article>
+		<h1>{{ title }}</h1>
+		<p class="meta">By <a href="/about/">{{ metadata.authorName}}</a> on <time datetime="{{ date | dateFilter }}">{{ date | dateFilter }}</time></p>
+		{{ content | safe }}
+		<ul class="meta">
+			<li>Posted in:
+				<ul>
+					<li><a href="/{{ class }}">{{ class }}</a></li>
+				</ul>
+			</li>
+			<li>Category:
+				<ul>
+					<li><a href="/{{ class }}/search/categories/{{ category }}/">{{ category }}</a></li>
+				</ul>
+			</li>
+			<li>Tags:
+				<ul>
+					{% for tag in tags %}
+					<li><a href="/{{ class }}/search/tags/{{ tag}}">{{ tag }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+	</article>
+</main>

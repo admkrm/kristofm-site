@@ -1,0 +1,13 @@
+---
+layout: 'base'
+inlineStyle: ''
+inlineScript: ''
+---
+
+<aside>
+	{% include "partials/aside_search.njk" %}
+</aside>
+<main class="search">
+	{% include "partials/showstrip.njk" %}
+	{{ content | safe }}
+</main>

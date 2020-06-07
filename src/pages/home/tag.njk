@@ -1,0 +1,18 @@
+---
+layout: 'search'
+class : 'home'
+pagination:
+  data: collections.homeTags
+  size: 1
+  alias: tag
+permalink: /{{ class }}/search/tags/{{ tag }}/
+title: Posts tagged with {{ tag }}
+---
+<h1>Posts for tag "{{ tag }}"</h1>
+<ul>
+  {% set postList = collections.homeTagCollections[tag] %}
+  {%- for item in postList -%}
+      <li><a href="{{ item.url | url }}">{{ item.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+<p>Back to <a href="{{ '/home/search/' | url }}">search</a>, to the <a href="{{ '/' | url }}">most recent</a> or <a href="{{ '/home/all' | url }}">full list</a> of posts</p>

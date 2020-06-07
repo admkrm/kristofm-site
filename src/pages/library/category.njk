@@ -1,0 +1,21 @@
+---
+layout: 'search'
+class : 'library'
+pagination:
+  data: collections.libraryCategories
+  size: 1
+  alias: category
+permalink: /{{class}}/search/categories/{{ category }}/
+title: Gallery in category {{ category }}
+---
+
+<h1>Library for category "{{ category }}"</h1>
+
+<ul class="wordlist">
+  {% set libraryList = collections.libraryCategoryCollections[category] %}
+  {%- for item in libraryList -%}
+      <li><a href="{{ item.url | url }}">{{ item.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>Back to <a href="{{ '/library/search/' | url }}">search</a>, to the <a href="{{ '/library/' | url }}">most recent</a> or <a href="{{ '/library/all' | url }}">full list</a> of photobooks</p>

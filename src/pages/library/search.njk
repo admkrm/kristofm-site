@@ -1,0 +1,46 @@
+---
+layout: 'search'
+class: 'library'
+permalink: '/{{class}}/search/'
+title: 'Search Library'
+---
+
+<h1>Search the library</h1>
+
+<h2>Photographer</h2>
+
+<ul class="wordlist">
+{% for photographer in collections.photographerList %}
+  {% set photographerUrl %}/library/search/photographer/{{ photographer }}/{% endset %}
+  <li><a href="{{ photographerUrl | url }}">{{ photographer }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Year of publication</h2>
+
+<ul class="wordlist">
+{% for year in collections.yopList %}
+  {% set yopUrl %}/library/search/year/{{ year }}/{% endset %}
+  <li><a href="{{ yopUrl | url }}">{{ year }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>by category</h2>
+
+<ul class="wordlist">
+{% for category in collections.libraryCategories %}
+  {% set catUrl %}/library/search/categories/{{ category }}/{% endset %}
+  <li><a href="{{ catUrl | url }}">{{ category }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>by tag</h2>
+
+<ul class="wordlist">
+{% for tag in collections.libraryTags %}
+  {% set tagUrl %}/library/search/tags/{{ tag }}/{% endset %}
+  <li><a href="{{ tagUrl | url }}">{{ tag }}</a></li>
+{% endfor %}
+</ul>
+
+<p>View the <a href="{{ '/library/' | url }}">most recent</a> or <a href="{{ '/library/all/' | url }}">full list</a> of photobooks.</p>

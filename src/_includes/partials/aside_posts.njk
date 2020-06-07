@@ -1,0 +1,37 @@
+{% switch class %}
+  {% case 'writing' %}
+    {% set collection = collections.writing %}
+  {% case 'links' %}
+    {% set collection = collections.links %}
+	{% case 'gallery' %}
+		{% set collection = collections.gallery %}
+	{% case 'library' %}
+		{% set collection = collections.library %}
+	{% case 'home' %}
+		{% set collection = collections.home %}
+  {% default %}
+    {% set collection = collections.notes %}
+{% endswitch %}
+
+
+<h1>{{ title }}</h1>
+
+<p>There is more. View the <a href="{{ '/'+ class + '/all/' | url }}">full list</a> or <a href="{{ '/' + class + '/search/' | url }}">search</a> by tag or category. You can also grab <a href="{{ '/' + class + '/feed.xml' }}">the feed</a>.</p>
+
+<h2>{{ titleList }}</h2>
+
+<nav aria-label="secondary">
+	<ul>
+		{%- for item in collection | head(-10) | reverse -%}
+		  <li>
+				<a href="#{{ item.fileSlug  }}">
+					{%- if item.data.sumTitle -%}
+						{{ item.data.sumTitle }}
+					{%- else -%}
+						{{ item.data.title }}
+					{%- endif -%}
+				</a>
+			</li>
+		{%- endfor -%}
+	</ul>
+</nav>

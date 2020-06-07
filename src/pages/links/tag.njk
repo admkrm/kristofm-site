@@ -1,0 +1,21 @@
+---
+layout: 'search'
+class : 'links'
+pagination:
+  data: collections.linkTags
+  size: 1
+  alias: tag
+permalink: /{{ class }}/search/tags/{{ tag }}/
+title: Links tagged with {{ tag }}
+---
+
+<h1>Links for tag "{{ tag }}"</h1>
+
+<ul>
+  {% set linkList = collections.linkTagCollections[tag] %}
+  {%- for link in linkList -%}
+      <li><a href="{{ link.url | url }}">{{ link.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>Back to <a href="{{ '/links/search/' | url }}">search</a>, to the <a href="{{ '/links/' | url }}">most recent</a> or <a href="{{ '/links/all' | url }}">full list</a> of links</p>

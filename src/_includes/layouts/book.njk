@@ -1,0 +1,67 @@
+---
+layout: 'base'
+inlineStyle: ''
+inlineScript: ''
+---
+
+<aside>
+	{% include "partials/aside_post.njk" %}
+</aside>
+<main class="book">
+	{% include "partials/showstrip.njk" %}
+	<article>
+		<h1>
+			{%- for item in collections.photographers -%}
+				{%- if item.data.name == photographer -%}
+					{{ item.data.firstname }}
+					{{ item.data.lastname }}
+				{%- endif -%}
+			{%- endfor -%}
+			:
+			{{ title }}
+		</h1>
+		<p class="meta">By <a href="/about/">{{ metadata.authorName}}</a> on <time datetime="{{ date | dateFilter }}">{{ date | dateFilter }}</time></p>
+		<h3>{{year_of_publication}}</h3>
+		<p>{{publisher}}, {{place}}</p>
+		<p>{{size}}, {{pages}}</p>
+		<p>{{edition_info}}</p>
+		<p>{{photos}}</p>
+		<p>{{extra_info}}</p>
+		<img src="{{image}}" alt="{{person}}: {{title}}">
+		{{ content | safe }}
+		<h2>Photographer bio</h2>
+		{%- for item in collections.photographers -%}
+		  {%- if item.data.name == photographer -%}
+				<p>{{ item.data.description }}</p>
+		  {%- endif -%}
+		{%- endfor -%}
+		<h2>All books by this photographer in my collection</h2>
+		<ul>
+	  {%- for book in collections.photographerBooks[photographer] -%}
+	      <li><a href="{{ book.url | url }}">{{ book.data.photographer }}: {{ book.data.title }}</a></li>
+	  {%- endfor -%}
+		</ul>
+
+
+<p>Back to <a href="{{ '/library/' | url }}">library overview</a> or the <a href="{{ '/library/search/' | url }}">search page</a></p>
+		<ul class="meta">
+			<li>Posted in:
+				<ul>
+					<li><a href="/{{ class }}">{{ class }}</a></li>
+				</ul>
+			</li>
+			<li>Category:
+				<ul>
+					<li><a href="/{{ class }}/search/categories/{{ category }}/">{{ category }}</a></li>
+				</ul>
+			</li>
+			<li>Tags:
+				<ul>
+					{% for tag in tags %}
+					<li><a href="/{{ class }}/search/tags/{{ tag}}">{{ tag }}</a></li>
+					{% endfor %}
+				</ul>
+			</li>
+		</ul>
+	</article>
+</main>

@@ -1,0 +1,53 @@
+---
+permalink: '/library/feed.xml'
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ metadata.title }} | Links feed</title>
+  <subtitle>{{ metadata.subtitle }}</subtitle>
+  <link href="{{ metadata.url }}{{ permalink }}" rel="self"/>
+  <link href="{{ metadata.url }}/"/>
+  <updated>{{ collections.library | rssLastUpdatedDate }}</updated>
+  <id>{{ metadata.url }}</id>
+  <author>
+    <name>{{ metadata.authorName }}</name>
+    <email>{{ metadata.authorEmail }}</email>
+  </author>
+  {% set itemList = collections.library | head(-10) | reverse %}
+  {% for item in itemList %}
+    {% set absoluteItemUrl %}{{ metadata.url }}{{ item.url | url }}{% endset %}
+    <entry>
+      <title>{{ item.data.title }}</title>
+      <link href="{{ absoluteItemUrl }}"/>
+      <updated>{{ item.date | rssDate }}</updated>
+      <id>{{ absoluteItemUrl }}</id>
+      <content type="html">
+        <![CDATA[
+        <h1>{{item.data.photographer | safe }}: {{item.data.title | safe }}</h1>
+
+        <h3>{{item.data.year_of_publication}}</h3>
+
+        <p>{{item.data.publisher}}, {{item.data.place}}</p>
+
+        <p>----------------------</p>
+
+        <p>{{item.data.size}}, {{item.data.pages}}</p>
+
+        <p>{{item.data.edition_info}}</p>
+
+        <p>{{item.data.photos}}</p>
+
+        <p>----------------------</p>
+
+        <p>{{item.data.extra_info}}</p>
+
+        <img src="{{item.data.image}}" alt="{{item.data.person}}: {{title}}">
+
+        {{ item.templateContent | safe }}
+
+        <p>----------------------</p>
+    ]]>
+      </content>
+    </entry>
+  {% endfor %}
+</feed>

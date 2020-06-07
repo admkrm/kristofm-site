@@ -1,0 +1,28 @@
+---
+layout: 'search'
+class: 'links'
+permalink: '/{{class}}/search/'
+title: 'Search links'
+---
+
+<h1>Search Links</h1>
+
+<h2>by category</h2>
+
+<ul class="wordlist">
+{% for category in collections.linkCategories %}
+  {% set catUrl %}/links/search/categories/{{ category }}/{% endset %}
+  <li><a href="{{ catUrl | url }}">{{ category }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>by tag</h2>
+
+<ul class="wordlist">
+{% for tag in collections.linkTags %}
+  {% set tagUrl %}/links/search/tags/{{ tag }}/{% endset %}
+  <li><a href="{{ tagUrl | url }}">{{ tag }}</a></li>
+{% endfor %}
+</ul>
+
+<p>View the <a href="{{ '/links/' | url }}">most recent</a> or <a href="{{ '/links/all/' | url }}">full list</a> of links.</p>

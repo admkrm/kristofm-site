@@ -1,0 +1,15 @@
+---
+layout: 'all'
+class: 'home'
+permalink: '/{{class}}/all/'
+title: 'All posts'
+---
+<h1>All the posts I have written</h1>
+
+<ul>
+{%- for item in collections.home | reverse -%}
+  <li><a href="{{ item.url | url }}">{{ item.data.title }}</a> ({{item.data.date.getDate()}}/{{item.data.date.getMonth()+1}}/{{ item.data.date.getFullYear() }})</li>
+{%- endfor -%}
+</ul>
+
+<p>View the <a href="{{ '/' | url }}">most recent</a> writing or check out <a href="{{ '/home/search/' | url }}">the archive</a>.</p>

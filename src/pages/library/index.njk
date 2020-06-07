@@ -1,0 +1,40 @@
+---
+layout: 'posts'
+class: 'library'
+permalink: '/{{class}}/'
+title: 'Search my library'
+titleList: 'Recent additions'
+eleventyNavigation:
+  key: 'Library'
+  title: 'Library'
+  order: 5
+---
+
+{%- for item in collections.library | head(-10) | reverse -%}
+  <article id="{{ item.fileSlug  }}">
+     <h2>
+      <a href="{{ item.url | url }}">
+        {%- for photographer in collections.photographers -%}
+          {%- if photographer.data.name == item.data.photographer -%}
+            {{ photographer.data.firstname }}
+            {{ photographer.data.lastname }}
+          {%- endif -%}
+         {%- endfor -%}
+          :
+          {{ item.data.title }}
+      </a>
+    </h2>
+    <p>By <a href="/about">{{ metadata.authorName}}</a> on <time datetime="{{ item.date | dateFilter }}">{{ item.date | dateFilter }}</time></p>
+    {% if item.data.sumImage %}
+      <img src="{{ item.data.sumImage }}" alt="{{ item.data.sumImageAlt }}">
+    {% endif %}
+    {% if item.data.sumDescription %}
+      {{ item.data.sumDescription | safe }}
+      <p>Posted in <a href="/{{class}}/search/categories/{{item.data.category}}">{{item.data.category}}</a>.</p>
+      <p><a href='{{ item.url | url }}'>Read more</a></p>
+    {% else %}
+        {{ item.templateContent | safe }}
+        <p>Posted in <a href="/{{class}}/search/categories/{{item.data.category}}">{{item.data.category}}</a>.</p>
+    {% endif %}
+  </article>
+{%- endfor -%}

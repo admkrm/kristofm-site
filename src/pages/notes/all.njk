@@ -1,0 +1,16 @@
+---
+layout: 'all'
+class: 'notes'
+permalink: '/{{class}}/all/'
+title: 'All notes'
+---
+
+<h1>All the notes I have written</h1>
+
+<ul>
+{%- for item in collections.notes | reverse -%}
+  <li><a href="{{ item.url | url }}">{{ item.data.title }}</a> ({{item.data.date.getDate()}}/{{item.data.date.getMonth()+1}}/{{ item.data.date.getFullYear() }})</li>
+{%- endfor -%}
+</ul>
+
+<p>View the <a href="{{ '/notes/' | url }}">most recent</a> notes or check out <a href="{{ '/notes/search/' | url }}">the archive</a>.</p>

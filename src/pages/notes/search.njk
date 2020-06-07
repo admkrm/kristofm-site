@@ -1,0 +1,29 @@
+---
+layout: 'search'
+class: 'notes'
+permalink: '/{{class}}/search/'
+title: 'Search notes'
+---
+<h1>Search the notebook</h1>
+
+<h2>by category</h2>
+
+<ul class="wordlist">
+{% for category in collections.noteCategories %}
+  {% set catUrl %}/notes/search/categories/{{ category }}/{% endset %}
+  <li><a href="{{ catUrl | url }}">{{ category }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>by tag</h2>
+
+<ul class="wordlist">
+{% for tag in collections.noteTags %}
+  {% set tagUrl %}/notes/search/tags/{{ tag }}/{% endset %}
+  <li><a href="{{ tagUrl | url }}">{{ tag }}</a></li>
+{% endfor %}
+</ul>
+
+
+
+<p>View the <a href="{{ '/notes/' | url }}">most recent</a> or <a href="{{ '/notes/all/' | url }}">full list</a> of notes.</p>

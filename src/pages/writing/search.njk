@@ -1,0 +1,27 @@
+---
+layout: 'search'
+class: 'writing'
+permalink: '/{{class}}/search/'
+title: 'Search writing'
+---
+<h1>Search the writing</h1>
+
+<h2>by category</h2>
+
+<ul class="wordlist">
+{% for category in collections.writingCategories %}
+  {% set catUrl %}/writing/search/categories/{{ category }}/{% endset %}
+  <li><a href="{{ catUrl | url }}">{{ category }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>by tag</h2>
+
+<ul class="wordlist">
+{% for tag in collections.writingTags %}
+  {% set tagUrl %}/writing/search/tags/{{ tag }}/{% endset %}
+  <li><a href="{{ tagUrl | url }}">{{ tag }}</a></li>
+{% endfor %}
+</ul>
+
+<p>View the <a href="{{ '/writing/' | url }}">most recent</a> or <a href="{{ '/writing/all/' | url }}">full list</a> of writing.</p>

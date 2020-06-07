@@ -1,0 +1,20 @@
+---
+layout: 'search'
+class : 'library'
+pagination:
+  data: collections.yopList
+  size: 1
+  alias: yop
+permalink: /{{class}}/search/year/{{ yop }}/
+title: Books from year {{ yop }}
+---
+
+<h1>Year "{{ yop }}"</h1>
+
+<ul>
+  {%- for book in collections.yops[yop] -%}
+      <li><a href="{{ book.url | url }}">{{ book.data.photographer }}: {{ book.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>Back to <a href="{{ '/library/search/' | url }}">search</a> or to <a href="{{ '/library/' | url }}">library overview</a></p>

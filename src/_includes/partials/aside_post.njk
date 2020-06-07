@@ -1,0 +1,21 @@
+<ul class="meta">
+	<li>By <a href="/about/">{{ metadata.authorName }}</a></li>
+	<li>On <time datetime="{{ date | dateFilter }}">{{ date | dateFilter }}</time></li>
+	<li>Type:
+		<ul>
+			<li><a href="/{{ class }}">{{ class }}</a></li>
+		</ul>
+	</li>
+	<li>Category:
+		<ul>
+			<li><a href="/{{ class }}/search/categories/{{ category }}/">{{ category }}</a></li>
+		</ul>
+	</li>
+	<li>Tags:
+		<ul>
+			{% for tag in tags %}
+			<li><a href="/{{ class }}/search/tags/{{ tag}}">{{ tag }}</a></li>
+			{% endfor %}
+		</ul>
+	</li>
+</ul>

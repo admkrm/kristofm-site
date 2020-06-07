@@ -1,0 +1,18 @@
+<header>
+	<div class="show_menu">
+		<span class="line"></span>
+		<span class="line"></span>
+		<span class="line"></span>
+	</div>
+	<nav aria-label="primary">
+		<ul>
+			<li class="logo"><a href="/">kristo<span class="dot">.</span>fm<span class="name">ichiels</span></a></li>
+			{% set navPages = collections.all | eleventyNavigation %}
+			{%- for entry in navPages %}
+				<li{% if entry.url == page.url %} class="active"{% endif %}>
+					<a href="{{ entry.url | url }}">{{ entry.title }}</a>
+				</li>
+			{%- endfor %}
+		</ul>
+	</nav>
+</header>

@@ -1,0 +1,18 @@
+---
+layout: 'search'
+class : 'notes'
+pagination:
+  data: collections.noteCategories
+  size: 1
+  alias: category
+permalink: /{{class}}/search/categories/{{ category }}/
+title: Notes in category {{ category }}
+---
+<h1>Notes for category "{{ category }}"</h1>
+<ul>
+  {% set noteList = collections.noteCategoryCollections[category] %}
+  {%- for note in noteList -%}
+      <li><a href="{{ note.url | url }}">{{ note.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+<p>Back to <a href="{{ '/notes/search/' | url }}">search</a>, to the <a href="{{ '/notes/' | url }}">most recent</a> or <a href="{{ '/notes/all' | url }}">full list</a> of notes</p>

@@ -1,0 +1,15 @@
+---
+layout: 'base'
+inlineStyle: ''
+inlineScript: ''
+---
+
+<aside>
+	{% include "partials/aside_about.njk" %}
+</aside>
+<main class="posts">
+	{% include "partials/showstrip.njk" %}
+<article>
+	{{ content | safe }}
+</article>
+</main>

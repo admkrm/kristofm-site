@@ -1,0 +1,16 @@
+---
+layout: 'all'
+class: 'library'
+permalink: '/{{class}}/all/'
+title: 'All photobooks'
+---
+
+<h1>All the photobooks from my collection</h1>
+
+<ul>
+  {%- for book in collections.library | reverse -%}
+      <li><a href="{{ book.url | url }}">{{ book.data.photographer }}: {{ book.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>View the <a href="{{ '/library/' | url }}">most recent</a> books or check out <a href="{{ '/library/search/' | url }}">the archive</a>.</p>

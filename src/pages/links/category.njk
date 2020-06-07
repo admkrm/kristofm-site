@@ -1,0 +1,21 @@
+---
+layout: 'search'
+class : 'links'
+pagination:
+  data: collections.linkCategories
+  size: 1
+  alias: category
+permalink: /{{class}}/search/categories/{{ category }}/
+title: Links in category {{ category }}
+---
+
+<h1>Links for category "{{ category }}"</h1>
+
+<ul>
+  {% set linkList = collections.linkCategoryCollections[category] %}
+  {%- for link in linkList -%}
+      <li><a href="{{ link.url | url }}">{{ link.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>Back to <a href="{{ '/links/search/' | url }}">search</a>, to the <a href="{{ '/links/' | url }}">most recent</a> or <a href="{{ '/links/all' | url }}">full list</a> of links</p>

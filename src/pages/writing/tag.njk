@@ -1,0 +1,18 @@
+---
+layout: 'search'
+class : 'writing'
+pagination:
+  data: collections.writingTags
+  size: 1
+  alias: tag
+permalink: /{{ class }}/search/tags/{{ tag }}/
+title: Writing tagged with {{ tag }}
+---
+<h1>Writing for tag "{{ tag }}"</h1>
+<ul>
+  {% set writingList = collections.writingTagCollections[tag] %}
+  {%- for item in writingList -%}
+      <li><a href="{{ item.url | url }}">{{ item.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+<p>Back to <a href="{{ '/writing/search/' | url }}">search</a>, to the <a href="{{ '/writing/' | url }}">most recent</a> or <a href="{{ '/writing/all' | url }}">full list</a> of writing</p>

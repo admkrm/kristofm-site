@@ -1,0 +1,18 @@
+---
+layout: 'search'
+class : 'writing'
+pagination:
+  data: collections.writingCategories
+  size: 1
+  alias: category
+permalink: /{{class}}/search/categories/{{ category }}/
+title: Writing in category {{ category }}
+---
+<h1>Writing for category "{{ category }}"</h1>
+<ul>
+  {% set writingList = collections.writingCategoryCollections[category] %}
+  {%- for item in writingList -%}
+      <li><a href="{{ item.url | url }}">{{ item.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+<p>Back to <a href="{{ '/writing/search/' | url }}">search</a>, to the <a href="{{ '/writing/' | url }}">most recent</a> or <a href="{{ '/writing/all' | url }}">full list</a> of writing</p>

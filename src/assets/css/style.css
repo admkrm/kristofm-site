@@ -1,0 +1,284 @@
+/* -------------------------------------------------------------------------
+ CSS for https://kristo.fm
+ Styling by Kristof Michiels
+ Made with love in Antwerp in May 2020 (v1)
+ All rights reserved
+------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------
+ Mobile version - Structural parts
+------------------------------------------------------------------------- */
+body {
+	font-family: 'IBM Plex Sans', sans-serif;
+	font-size: 1.7rem;
+	font-weight: 300;
+	color: #323232;
+	-webkit-text-size-adjust: none;}
+
+header {
+	height: 5.4rem;
+	padding: 1.7rem 1.8rem;
+	background-color: #2b2b2b;
+	color: white;
+	transition-property: height;
+	transition-duration: .6s;
+	overflow: hidden;
+	position: sticky;
+	top: 0;
+	z-index: 900;}
+
+main {
+	background-color: white;
+	padding-bottom: 1.8rem;}
+
+main section.showstrip {
+	background-color: #eee;
+	height: 20rem;}
+
+main article {
+	padding: 1.8rem;}
+
+aside {
+	background-color: #ddd;
+	padding: 3.4rem;
+	display: none;}
+
+footer {
+	height: 20rem;
+	background-color: #999;
+	padding: 1.7rem;}
+
+header.fold_out {height: 100vh;}
+
+/* -------------------------------------------------------------------------
+ Mobile version - Other elements
+------------------------------------------------------------------------- */
+img {max-width: 100%;filter:grayscale(1);}
+header nav ul li.logo {position: absolute; width: 100%; top: 1.5rem; left: 0;text-align: center;border: 0;font-size: 2rem;}
+header nav ul li.logo a span {color: #999;display: inline-block;animation-duration: 30s;animation-iteration-count: infinite;animation-name: logodot;}
+header nav ul li.logo a span.name {animation-name: logoname;}
+header nav ul {margin: 4rem 1.7rem 0rem 1.7rem;}
+header nav ul li {
+	margin-bottom: 1.5rem;
+	border-bottom: .1rem solid white;
+	padding-bottom: 1.5rem;}
+
+header nav ul li a {
+	text-decoration: none;
+	color: white;}
+
+header div.show_menu {
+	width: 3rem;
+	position: absolute;
+	top: 1.1rem;
+	left: 1.7rem;
+	z-index: 100;}
+
+header div.show_menu .line{
+  width: 3rem;
+  height: .1rem;
+  background-color: white;
+  display: block;
+  margin: .7rem auto;
+  transition: all 0.5s ease-in-out;}
+
+div.active .line:nth-child(2){opacity: 0;}
+div.active .line:nth-child(1){transform: translateY(1rem) rotate(45deg);}
+div.active .line:nth-child(3){transform: translateY(-.6rem) rotate(-45deg);}
+
+main.posts article {border-bottom: 1.2rem solid #ddd;}
+main.posts article:last-child {border-bottom: 0;}
+main article h1, main article h2 {
+	font-size: 2.8rem;
+	font-weight: 700;
+	line-height: 4.2rem;
+	margin-bottom: 2rem;
+	text-align: justify;}
+
+main article h2 a {color: inherit;text-decoration: none;}
+main article h2 a:hover {color: inherit;}
+
+main article h3 {
+	font-weight: 500;
+	font-size: 2.6rem;
+	line-height: 4.2rem;
+	margin-bottom: 3rem;}
+
+main article p {
+	line-height: 3.4rem;
+	margin-bottom: 3rem;
+	text-align: justify;}
+
+main article p.meta, main article p.meta_overview {margin-top: 0;}
+main article ul.meta li {line-height: 3.4rem;}
+main article ul.meta li ul li:before {content: "- ";margin-left: 1.4rem;}
+main article img {margin-bottom: 3rem;}
+main article a, aside p a, aside nav ul li a {color: #4e5850;}
+main article a:hover, aside p a:hover, aside nav ul li a:hover {color: #859689;}
+
+aside p {line-height: 3.4rem;margin-bottom: 5rem;}
+aside h1, aside h2 {font-size: 2rem;line-height: 2rem;margin-bottom: 2rem;font-weight: 500;}
+
+/* -------------------------------------------------------------------------
+ Smartphone + landscape version
+------------------------------------------------------------------------- */
+@media (min-width: 700px) and (orientation: landscape) {
+	/* hier de padding zo aanpassen dat de notch nooit in de weg zit */
+	header div.show_menu {left: 5rem;}
+	main article {padding: 3rem 5rem;}
+}
+
+/* -------------------------------------------------------------------------
+ Tablet + portrait version
+------------------------------------------------------------------------- */
+@media (min-width: 750px) and (orientation: portrait) {
+	header div.show_menu {left: 3.4rem;}
+	main article {padding: 2.4rem 3.4rem;}
+}
+
+/* -------------------------------------------------------------------------
+ Tablet + landscape version
+------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+	html {scroll-behavior: smooth;}
+
+	body {
+		display: grid;
+		grid-template-columns: 0.25fr 0.75fr;}
+
+	header {
+		background-color: white;
+		color: #2b2b2b;
+		position: relative;
+		height: 12rem;
+		grid-column: 1/3;
+		grid-row: 1;}
+
+	aside {
+		display: block;
+		grid-row: 2/4;
+		grid-column: 1;
+		position: sticky;
+		top: -21rem;
+		height: calc(100vh + 21rem);}
+
+	main {grid-column: 2;grid-row: 2;}
+	main article p.meta, main article ul.meta {display: none;}
+	main article {padding: 3.4rem 3.4rem;}
+	footer {grid-column: 2;grid-row: 3;}
+	header div.show_menu {display: none;}
+	header nav ul li {border: 0;margin-right: 3.4rem;}
+	header nav ul li a {color: #2b2b2b;}
+	header nav ul li.logo {font-weight: 500; font-size: 2.4rem;position: static; text-align: left;margin-right: auto; margin-left: 3.4rem;margin-top: -.15rem;}
+
+	header nav ul {
+		position: absolute;
+		display: flex;
+		width: 100%;
+		top: 4.75rem;
+		left: 0rem;
+		margin: 0;}
+
+	aside ul.meta {margin-top: 21rem;}
+	aside ul.meta li {line-height: 3.4rem;}
+	aside ul.meta li a {color: #3c78d9;}
+	aside ul.meta li ul li:before {
+		content: "- ";
+		margin-left: 1.4rem;}
+
+	aside nav ul li {margin-bottom: 1rem;margin-left: -.6rem;margin-top: -.6rem;line-height: 3rem;}
+	aside nav ul li a {display: block;padding: .6rem;}
+	aside nav ul li a.current {background-color: #ff9902;color: white;text-decoration:none;}
+}
+
+/* -------------------------------------------------------------------------
+Desktop version
+------------------------------------------------------------------------- */
+@media (min-width: 1200px) {
+	body {
+		max-width: 1300px;
+		grid-template-columns: 0.25fr 0.75fr;
+		margin: 0 auto;
+		position: relative;}
+	html {background-color: #eee;}
+}
+
+/* -------------------------------------------------------------------------
+ Showstrip - temporary
+------------------------------------------------------------------------- */
+
+section.showstrip {
+      width: 100%;
+      overflow: hidden;
+      position: relative;}
+
+div.frame {
+      position: absolute;
+      width: 400vw;
+      height: inherit;
+      top: 0;
+      left: -200vw;
+      background-color: #999;}
+
+div.element {height: 10%;position: absolute;background-color: white;}
+/* scherm1 - % 0 -> 25 */
+div.element:nth-child(1) {width: 2%;top: 10%;left: 0%;}
+div.element:nth-child(2) {width: 1%;top: 30%;left: 0%;}
+div.element:nth-child(3) {width: 1%;top: 40%;left: 22%;}
+div.element:nth-child(4) {width: 2%;top: 60%;left: 4%;}
+div.element:nth-child(5) {width: 4%;top: 60%;left: 16%;}
+div.element:nth-child(6) {width: 1%;top: 80%;left: 12%;}
+/* scherm2 - % 26 -> 50 */
+div.element:nth-child(7) {width: 2%;top: 10%;left: 43%;}
+div.element:nth-child(8) {width: 8%;top: 30%;left: 36%;}
+div.element:nth-child(9) {width: 14%;top: 50%;left: 39%;}
+div.element:nth-child(10) {width: 2%;top: 60%;left: 28%;}
+div.element:nth-child(11) {width: 1%;top: 70%;left: 30%;}
+div.element:nth-child(12) {width: 3%;top: 80%;left: 34%;}
+/* scherm3 - % 51 -> 75 */
+div.element:nth-child(13) {width: 2%;top: 30%;left: 68%;}
+div.element:nth-child(14) {width: 12%;top: 40%;left: 65%;}
+div.element:nth-child(15) {width: 5%;top: 50%;left: 69%;}
+div.element:nth-child(16) {width: 3%;top: 70%;left: 56%;}
+div.element:nth-child(17) {width: 1%;top: 20%;left: 57%;}
+div.element:nth-child(18) {width: 4%;top: 30%;left: 55%;}
+/* scherm4 - % 76 -> 100 */
+div.element:nth-child(19) {width: 3%;top: 10%;left: 77%;}
+div.element:nth-child(20) {width: 5%;top: 20%;left: 78%;}
+div.element:nth-child(21) {width: 9%;top: 50%;left: 83%;}
+div.element:nth-child(22) {width: 5%;top: 60%;left: 82%;}
+div.element:nth-child(23) {width: 1%;top: 70%;left: 83%;}
+div.element:nth-child(24) {width: 2%;top: 20%;left: 95%;}
+
+div.frame {
+      animation-name: movement;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      animation-duration: 1200s;}
+
+@keyframes movement {
+      16.666% {left: -300vw;}
+      66.666% {left: 0vw;}
+      100% {left: -200vw;}
+}
+
+/* -------------------------------------------------------------------------
+ Animations - @keyframes
+------------------------------------------------------------------------- */
+
+@keyframes logodot {
+      0%, 52%, 96%, 100% {width: 0;color: transparent;}
+      57%, 91% {width: .4rem;color: #ddd;}
+}
+
+@media (min-width: 1024px) {
+	@keyframes logodot {
+	      0%, 52%, 96%, 100% {width: 0;color: transparent;}
+	      57%, 91% {width: .7rem;color: #ddd;}
+	}
+}
+
+@keyframes logoname {
+      0%, 52%, 96%, 100% {width: 3.6rem;color: #ddd;}
+      57%, 91% {width: 0rem;color: transparent;}
+}

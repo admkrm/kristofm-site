@@ -1,0 +1,20 @@
+---
+layout: 'search'
+class : 'library'
+pagination:
+  data: collections.photographerList
+  size: 1
+  alias: photographer
+permalink: /{{class}}/search/photographer/{{ photographer }}/
+title: Books for {{ photographer }}
+---
+
+<h1>Photographer "{{ photographer }}"</h1>
+
+<ul>
+  {%- for book in collections.photographerBooks[photographer] -%}
+      <li><a href="{{ book.url | url }}">{{ book.data.photographer }}: {{ book.data.title }}</a></li>
+  {%- endfor -%}
+</ul>
+
+<p>Back to <a href="{{ '/library/search/' | url }}">search</a> or to <a href="{{ '/library/' | url }}">library overview</a></p>
